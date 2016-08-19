@@ -32,15 +32,17 @@ if $plugin_metadata {
   } ->
 
   service { 'neutron-ovs-agent-service':
+    ensure     => running,
     name       => $::neutron::params::ovs_agent_service,
     enable     => true,
-    ensure     => running,
     hasstatus  => true,
     hasrestart => false,
     provider   => 'pacemaker',
   }
 
-  Neutron_plugin_ml2<||> ~> Service['neutron-server', 'neutron-ovs-agent-service']
-  Ini_subsetting['ovs/bridge_mappings'] ~> Service['neutron-server', 'neutron-ovs-agent-service']
+  Neutron_plugin_ml2<||> ~>
+    Service['neutron-server', 'neutron-ovs-agent-service']
+  Ini_subsetting['ovs/bridge_mappings'] ~>
+    Service['neutron-server', 'neutron-ovs-agent-service']
 
 }

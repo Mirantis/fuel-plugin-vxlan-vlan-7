@@ -31,7 +31,9 @@ if $plugin_metadata {
     enable => true,
   }
 
-  Neutron_plugin_ml2<||> ~> Service['neutron-plugin-openvswitch-agent']
-  Ini_subsetting['ovs/bridge_mappings'] ~> Service['neutron-plugin-openvswitch-agent']
+  Neutron_plugin_ml2<||> ~>
+    Service['neutron-plugin-openvswitch-agent']
+  Ini_subsetting['ovs/bridge_mappings'] ~>
+    Service['neutron-plugin-openvswitch-agent']
 
 }
