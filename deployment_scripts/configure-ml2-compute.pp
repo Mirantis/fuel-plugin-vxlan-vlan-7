@@ -2,6 +2,7 @@ $plugin_name     = 'fuel-plugin-vxlan-vlan-7'
 notice("MODULAR: ${plugin_name}/configure-ml2-compute.pp")
 
 $plugin_metadata = hiera($plugin_name, false)
+$release_version = hiera('openstack_version', 'old_or_unsupported')
 
 if $plugin_metadata {
 
@@ -20,7 +21,10 @@ if $plugin_metadata {
     section              => 'ovs',
     key_val_separator    => '=',
     subsetting_separator => ',',
-    path                 => '/etc/neutron/plugins/ml2/ml2_conf.ini',
+    path                 => $release_version ? {
+      'mitaka-9.0' => '/etc/neutron/plugins/ml2/openvswitch_agent.ini',
+      'default'    => '/etc/neutron/plugins/ml2/ml2_conf.ini'
+    },
     setting              => 'bridge_mappings',
     subsetting           => "${physnet}:",
     value                => $vlan_bridge,
