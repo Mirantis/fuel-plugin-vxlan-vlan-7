@@ -26,14 +26,13 @@ if $plugin_metadata {
     value                => $vlan_bridge,
   }
 
-  service { 'neutron-server':
+  service { "${::neutron::params::server_service}":
     ensure  => running,
     enable  => true,
   } ->
 
-  service { 'neutron-ovs-agent-service':
+  service { "${::neutron::params::ovs_agent_service}":
     ensure     => running,
-    name       => $::neutron::params::ovs_agent_service,
     enable     => true,
     hasstatus  => true,
     hasrestart => false,
@@ -41,8 +40,14 @@ if $plugin_metadata {
   }
 
   Neutron_plugin_ml2<||> ~>
-    Service['neutron-server', 'neutron-ovs-agent-service']
+    Service[
+      "${::neutron::params::server_service}",
+      "${::neutron::params::ovs_agent_service}"
+    ]
   Ini_subsetting['ovs/bridge_mappings'] ~>
-    Service['neutron-server', 'neutron-ovs-agent-service']
+    Service[
+      "${::neutron::params::server_service}",
+      "${::neutron::params::ovs_agent_service}"
+    ]
 
 }
