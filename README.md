@@ -7,9 +7,11 @@ Overview
 By default Fuel deploys only one type of neutron segmentation for tenant networks per environment (choice is done while creating environment).  
 Plugin can be used in VxLAN deployments to change neutron ml2 config file in order to configure VLAN ranges and bridge mappings.
 
-Requirements 
-------------
-- MOS 7.0 or MOS 8.0
+Supported MOS versions 
+----------------------
+- MOS 7.0
+- MOS 8.0
+- MOS 9.0
 
 Prerequisites
 ------------
