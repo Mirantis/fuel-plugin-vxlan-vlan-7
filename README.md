@@ -14,7 +14,7 @@ Supported MOS versions
 - MOS 9.0
 
 Prerequisites
-------------
+-------------
 - Modify and update fuel network-template as plugin does not create any intefaces by itself and relay on template to do this
 
 Installing the plugin
