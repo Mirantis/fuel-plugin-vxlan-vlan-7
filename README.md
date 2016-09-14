@@ -9,7 +9,9 @@ Plugin can be used in VxLAN deployments to change neutron ml2 config file in ord
 
 Requirements 
 ------------
-- MOS 7.0 or MOS 8.0
+- MOS 7.0
+- MOS 8.0
+- MOS 9.0
 
 Prerequisites
 ------------
