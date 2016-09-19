@@ -22,8 +22,9 @@ if $plugin_metadata {
     key_val_separator    => '=',
     subsetting_separator => ',',
     path                 => $release_version ? {
-      'mitaka-9.0' => '/etc/neutron/plugins/ml2/openvswitch_agent.ini',
-      'default'    => '/etc/neutron/plugins/ml2/ml2_conf.ini'
+      'mitaka-9.0'  => '/etc/neutron/plugins/ml2/openvswitch_agent.ini',
+      'liberty-8.0' => '/etc/neutron/plugins/ml2/openvswitch_agent.ini',
+      'default'     => '/etc/neutron/plugins/ml2/ml2_conf.ini'
     },
     setting              => 'bridge_mappings',
     subsetting           => "${physnet}:",
